@@ -1,0 +1,14 @@
+
+*.testing
+
+Dockerfile.python
+
+docker-compose.yaml
+
+*~
+
+docker-compose.yml
+
+
+__pycache__
+docker-compose.dev.yml
