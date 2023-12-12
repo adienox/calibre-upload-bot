@@ -11,6 +11,7 @@ api_id = os.environ.get('TG_API_ID')
 api_hash = os.environ.get('TG_API_HASH')
 bot_token = os.environ.get('TG_BOT_TOKEN')
 TG_AUTHORIZED_USER_ID = os.environ.get('TG_AUTHORIZED_USER_ID')
+download_path='/output'
 
 # Convert comma-separated string to a list of authorized user IDs
 authorized_users = list(map(int, TG_AUTHORIZED_USER_ID.replace(" ", "").split(','))) if TG_AUTHORIZED_USER_ID else False 
@@ -36,9 +37,10 @@ async def download_files(event):
                 file_type = event.media.document.mime_type
                 if file_type in ['application/pdf', 'application/x-mobipocket-ebook', 'application/epub+zip']:
                     # Download the file
+                    message = await event.reply('processing file... ⏳')
                     file_path = os.path.join(download_path, event.file.name)
                     await event.download_media(file_path)
-                    await event.reply('File processed successfully!')
+                    await message.edit('File processed successfully!')
                 else:
                     await event.reply('I only process PDF, EPUB, and MOBI files.')
             else:
