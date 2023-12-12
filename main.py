@@ -40,6 +40,7 @@ async def download_files(event):
                     message = await event.reply('processing file... ⏳')
                     file_path = os.path.join(download_path, event.file.name)
                     await event.download_media(file_path)
+                    os.chmod(file_path , 0777)
                     await message.edit('File processed successfully!')
                 else:
                     await event.reply('I only process PDF, EPUB, and MOBI files.')
