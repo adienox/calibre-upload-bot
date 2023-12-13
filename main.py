@@ -14,7 +14,7 @@ bot_token = os.environ.get('TG_BOT_TOKEN')
 TG_AUTHORIZED_USER_ID = os.environ.get('TG_AUTHORIZED_USER_ID')
 download_path='/output'
 library_path='/books'
-calibre_binaries='/binaries'
+calibre_binaries='/binaries/'
 
 def add_books_to_calibre(library_path, *book_paths):
     """
