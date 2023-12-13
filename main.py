@@ -29,8 +29,9 @@ def add_books_to_calibre(library_path, *book_paths):
         calibre_binaries + 'calibredb', 'add',
         '--library-path', library_path,
     ]
+    
     command.extend(book_paths)
-
+    
     try:
         # Execute the calibredb command
         subprocess.run(command, check=True)
