@@ -14,6 +14,7 @@ bot_token = os.environ.get('TG_BOT_TOKEN')
 TG_AUTHORIZED_USER_ID = os.environ.get('TG_AUTHORIZED_USER_ID')
 download_path='/output'
 library_path='/books'
+calibre_binaries='/binaries'
 
 def add_books_to_calibre(library_path, *book_paths):
     """
@@ -25,7 +26,7 @@ def add_books_to_calibre(library_path, *book_paths):
     """
     # Construct the command to add books to the Calibre library
     command = [
-        'calibredb', 'add',
+        calibre_binaries + 'calibredb', 'add',
         '--library-path', library_path,
     ]
     command.extend(book_paths)
