@@ -14,6 +14,7 @@
 ## Volumes:
 
  **/output** : folder where the downloaded files will be saved
+ **/books** : calibre library db, (location of metadata.db)
 
 Generating Telegram API keys
 =================
@@ -66,6 +67,7 @@ services:
       - 'TG_BOT_TOKEN=<telegram BOT token generated at ´Creating a Telegram Bot´>'
     volumes:
       - /path/to/output:/output
+      - /path/to/books:/books
 ```
 
 Heavily inspired by [jsavargas/calibre-upload-bot](https://github.com/jsavargas/calibre-upload-bot)
