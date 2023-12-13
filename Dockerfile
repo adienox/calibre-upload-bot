@@ -1,4 +1,4 @@
-FROM python:slim
+FROM jsavargas/calibre-upload-bot:94512113be
 
 WORKDIR /app
 COPY requirements.txt requirements.txt
