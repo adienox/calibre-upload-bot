@@ -16,7 +16,7 @@ download_path='/output'
 library_path='/books'
 calibre_binaries='/binaries/'
 
-def add_books_to_calibre(library_path, *book_paths):
+def add_books_to_calibre(library_path, *book_paths, run_as_user=None):
     """
     Add books to Calibre library using calibredb.
 
@@ -31,6 +31,10 @@ def add_books_to_calibre(library_path, *book_paths):
     ]
     
     command.extend(book_paths)
+
+    if run_as_user:
+        # Use sudo to run the command as another user
+        command = ['sudo', '-u', run_as_user] + command
     
     try:
         # Execute the calibredb command
@@ -66,7 +70,7 @@ async def download_files(event):
                     message = await event.reply('processing file... ⏳')
                     file_path = os.path.join(download_path, event.file.name)
                     await event.download_media(file_path)
-                    add_books_to_calibre(library_path, file_path)
+                    add_books_to_calibre(library_path, file_path, 'abc')
                     await message.edit('File processed successfully!')
                 else:
                     await event.reply('I only process PDF, EPUB, and MOBI files.')
